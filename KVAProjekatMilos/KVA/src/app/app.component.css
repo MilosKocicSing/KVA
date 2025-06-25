@@ -1,0 +1,17 @@
+.app .navbar {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.app .navbar .logo {
+    cursor: default;
+}
+
+.app .navbar .nav a {
+    transition: 0.2s;
+}
+
+.app .navbar .nav a:hover {
+    color: #b9b9b9;
+}

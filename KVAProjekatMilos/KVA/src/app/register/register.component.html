@@ -1,0 +1,61 @@
+<div class="register">
+    <div class="container">
+        <mat-card class="auth-card">
+            <mat-card-header>
+                <h1>Registracija</h1>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-form-field class="full-width">
+                    <mat-label>Korisničko ime</mat-label>
+                    <input type="text" matInput placeholder="Unesite vaše korisničko ime..." [(ngModel)]="username">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput placeholder="Unesite vaš email..." [(ngModel)]="email">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <mat-label>Šifra</mat-label>
+                    <input type="password" matInput placeholder="Unesite vašu šifru..." [(ngModel)]="password">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <mat-label>Ponovite šifru</mat-label>
+                    <input type="password" matInput placeholder="Ponovite vašu šifru..." [(ngModel)]="repeatPassword">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <mat-label>Ime</mat-label>
+                    <input type="text" matInput placeholder="Unesite vaše ime..." [(ngModel)]="name">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <mat-label>Prezime</mat-label>
+                    <input type="text" matInput placeholder="Unesite vaše prezime..." [(ngModel)]="surname">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <mat-label>Telefon</mat-label>
+                    <input type="tel" matInput placeholder="Unesite vaš broj telefona..." [(ngModel)]="phone">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <mat-label>Adresa</mat-label>
+                    <input type="text" matInput placeholder="Unesite vašu adresu..." [(ngModel)]="address">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <mat-label>Odaberite omiljene filmove</mat-label>
+                    <mat-select [(ngModel)]="favoriteMovies" multiple>
+                        <mat-option *ngFor="let movie of movies" [value]="movie.originalTitle">
+                            {{movie.originalTitle}}.
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-card-content>
+            <mat-card-actions>
+                <div class="btns-holder">
+                    <button type="button" mat-button (click)="doSignup()">
+                        <i class="fa-solid fa-right-to-bracket"></i> Registruj se
+                    </button>
+                    <a mat-button routerLink="/login">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Već imam nalog
+                    </a>
+                </div>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

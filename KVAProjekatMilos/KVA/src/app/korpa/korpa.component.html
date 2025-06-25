@@ -1,0 +1,105 @@
+<div class="korpa">
+    <div class="container">
+        <mat-card appearance="outlined" *ngIf="ordersForUser.length == 0" class="no-order">
+            <mat-card-content>
+                <h1>Vaša korpa je prazna</h1>
+                <p>Da bi ste rezervisali film posetite <a [routerLink]="['/home']" class="cyan">glavnu stranicu</a></p>
+            </mat-card-content>
+        </mat-card>
+        <div *ngIf="ordersForUser.length > 0" class="cart-holder">
+        <table mat-table [dataSource]="ordersForUser">
+
+            <ng-container matColumnDef="poster">
+                <th mat-header-cell *matHeaderCellDef class="id">
+                    Poster
+                </th>
+                <td mat-cell *matCellDef="let element" class="id"> <img src="{{element.poster}}"> </td>
+            </ng-container>
+
+            <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef class="id">
+                    Titl
+                </th>
+                <td mat-cell *matCellDef="let element" class="id"> {{element.title}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="runTime">
+                <th mat-header-cell *matHeaderCellDef class="id">
+                    Trajanje
+                </th>
+                <td mat-cell *matCellDef="let element" class="id"> {{utils.round(element.runTime/60)}}h {{utils.leftover(element.runTime)}}min </td>
+            </ng-container>
+
+            <ng-container matColumnDef="startDate">
+                <th mat-header-cell *matHeaderCellDef class="id">
+                    Datum izlaska
+                </th>
+                <td mat-cell *matCellDef="let element" class="id"> {{element.startDate}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="projectionDate">
+                <th mat-header-cell *matHeaderCellDef class="id">
+                    Datum projekcije
+                </th>
+                <td mat-cell *matCellDef="let element" class="id"> {{element.projectionDate}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="projectionTime">
+                <th mat-header-cell *matHeaderCellDef class="id">
+                    Vreme projekcije
+                </th>
+                <td mat-cell *matCellDef="let element" class="id"> {{element.projectionTime}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef class="id">
+                    Cena
+                </th>
+                <td mat-cell *matCellDef="let element" class="id"> {{element.price}} RSD </td>
+            </ng-container>
+
+            <ng-container matColumnDef="count">
+                <th mat-header-cell *matHeaderCellDef class="id">
+                    Količina
+                </th>
+                <td mat-cell *matCellDef="let element" class="id">
+                    <input type="number" min=1 max=10 onforminput="count()" id="count" [(ngModel)]="element.count" class="amount">kom.
+                </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="total">
+                <th mat-header-cell *matHeaderCellDef class="id">
+                    Ukupno
+                </th>
+                <td mat-cell *matCellDef="let element" class="id"> {{utils.multiply(element.price, element.count)}} RSD </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef class="id">
+                    Status
+                </th>
+                <td mat-cell *matCellDef="let element" class="id"> {{getStatus(element)}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef class="id">
+                    Opcije
+                </th>
+                <td mat-cell *matCellDef="let element" class="id">
+                    <button (click)="removeItem(element)" class="remove-btn">Obriši</button>
+                </td>
+            </ng-container>
+            
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="tr-gradient"></tr>
+        </table>
+
+        <p class="summary">Sveukupna suma svih rezervacija: {{ getTotalPrice() }} RSD</p>
+
+        <div class="btns-holder">
+            <button (click)="Reserve()">Potvrdi rezervaciju</button><br>
+            <button (click)="clearLocalStorage()" class="clear-cart">Očisti korpu</button>
+        </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,188 @@
+.korisnik {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #000;
+  color: #fff;
+  padding: 30px 20px;
+}
+
+.korisnik .wrapper .user-card {
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid #d80000;
+  border-radius: 8px;
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+.korisnik .wrapper .user-card mat-card-header img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.korisnik
+  .wrapper
+  .user-card
+  mat-card-content
+  mat-accordion
+  mat-expansion-panel {
+  background-color: #141414;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+/* Dugmad za ažuriranje i potvrdu */
+.korisnik .wrapper .user-card .confirm-btn,
+.korisnik .wrapper .user-card .update-btn {
+  padding: 10px 20px;
+  background-color: #d80000;
+  border: 1px solid #d80000;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 10px;
+  border-radius: 6px;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.korisnik .wrapper .user-card .confirm-btn:hover,
+.korisnik .wrapper .user-card .update-btn:hover {
+  background-color: transparent;
+  color: #d80000;
+}
+
+/* Prazna istorija */
+.korisnik .wrapper .no-order {
+  padding: 20px;
+  border: 1px solid #d80000;
+  border-radius: 8px;
+  background-color: #1a1a1a;
+  color: #fff;
+  text-align: center;
+}
+
+.korisnik .wrapper .no-order mat-card-content p a {
+  color: #f2c200;
+  text-decoration: underline;
+}
+
+.korisnik .wrapper .no-order mat-card-content p a:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* Tabela istorije kupovine */
+.korisnik .cart-holder table {
+  width: 100%;
+  background-color: #1a1a1a;
+  padding: 20px;
+  border-radius: 10px;
+  border-spacing: 0 10px;
+  margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.1);
+}
+
+.korisnik .cart-holder table th {
+  color: #ff4c4c;
+  font-size: 16px;
+  padding: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  border-bottom: 1px solid #d80000;
+}
+
+.korisnik .cart-holder table td {
+  color: #fff;
+  border-top: 1px solid #d80000;
+  border-bottom: 1px solid #d80000;
+  padding: 10px;
+  font-size: 15px;
+  text-align: center;
+  background-color: transparent;
+}
+
+.korisnik .cart-holder table td img {
+  max-height: 80px;
+  border-radius: 6px;
+}
+
+.korisnik .cart-holder table td:first-child {
+  border-left: 1px solid #d80000;
+  border-radius: 6px 0 0 6px;
+}
+
+.korisnik .cart-holder table td:last-child {
+  border-right: 1px solid #d80000;
+  border-radius: 0 6px 6px 0;
+}
+
+/* Dugmad u istoriji */
+.korisnik .cart-holder .cancel-btn,
+.korisnik .cart-holder .details-btn,
+.korisnik .cart-holder .pay-btn {
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 6px;
+  text-transform: uppercase;
+  display: inline-block;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin-top: 5px;
+}
+
+/* Posebno stilizovana dugmad */
+.korisnik .cart-holder .cancel-btn {
+  background-color: #d80000;
+  color: #fff;
+  border: 1px solid #d80000;
+}
+
+.korisnik .cart-holder .cancel-btn:hover {
+  background-color: transparent;
+  color: #d80000;
+}
+
+.korisnik .cart-holder .details-btn {
+  background-color: transparent;
+  color: #2bcf93;
+  border: 1px solid #2bcf93;
+}
+
+.korisnik .cart-holder .details-btn:hover {
+  background-color: #2bcf93;
+  color: #000;
+}
+
+.korisnik .cart-holder .pay-btn {
+  background-color: #f2c200;
+  color: #000;
+  border: 1px solid #f2c200;
+}
+
+.korisnik .cart-holder .pay-btn:hover {
+  background-color: transparent;
+  color: #f2c200;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .korisnik .wrapper .user-card {
+    padding: 15px;
+  }
+
+  .korisnik .cart-holder table th,
+  .korisnik .cart-holder table td {
+    font-size: 14px;
+    padding: 6px;
+  }
+
+  .korisnik .cart-holder .cancel-btn,
+  .korisnik .cart-holder .details-btn,
+  .korisnik .cart-holder .pay-btn {
+    width: 100%;
+    margin-top: 8px;
+  }
+}

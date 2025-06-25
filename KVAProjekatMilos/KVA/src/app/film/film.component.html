@@ -1,0 +1,112 @@
+<div class="film">
+    <div class="container">
+        <mat-card *ngIf="movies as movie">
+            <div class="movies-card" appearance="outlined">
+                <a [routerLink]="['/film/',movie.movieId]">
+                    <img mat-card-image [src]="utils.generateMovieImage(movie.poster)" [alt]="movie.poster">
+                </a>
+
+                <div class="movie-details">
+                    <mat-card-content>
+                        <div class="movie-details-container">
+                            <h1>{{movie.title}}</h1>
+                            <p><strong>Opis: </strong></p>
+                            <p>{{movie.description}}</p>
+                            <br>
+                            <p *ngIf="ProsecnaOcena(movie.movieId) != 0"><strong>Ocena gledalaca: <i class="fa-solid fa-star" style="color: rgb(252, 255, 95);"> </i>{{utils.round2(ProsecnaOcena(movie.movieId))}}</strong></p>
+                            <p *ngIf="ProsecnaOcena(movie.movieId) == 0"><strong>Ocena gledalaca: </strong>Nema ocena</p>
+                            <br>
+                            <p><strong>Žanrovi:</strong></p>
+                            <ul>
+                                <li *ngFor="let genre of movie.movieGenres"> {{genre.genre.name}}</li> 
+                            </ul>
+                            <br>
+                            <p><strong>Reditelj: </strong>{{movie.director.name}}</p>
+                            <br>
+                            <p><strong>Glumci:</strong></p>
+                            <ul>
+                                <li *ngFor="let actor of movie.movieActors"> {{actor.actor.name}}</li> 
+                            </ul>
+                            <br>
+                            <p><i class="fa-solid fa-calendar-days"></i><strong> Datum izlaska: </strong>{{utils.formatDate(movie.startDate)}}</p>
+                            <p><i class="fa-solid fa-clock"></i><strong> Trajanje filma: </strong>{{utils.round(movie.runTime/60)}}h {{utils.leftover(movie.runTime)}}min</p>
+                            <br>
+                        </div>
+                        <div class="reserve-container">
+                            <p>Datum projekcije:</p>
+                            <select [(ngModel)]="userInputDate">
+                                <option *ngFor="let date of movie.projectionDate" [value]="date">
+                                    {{date}} 
+                                </option>
+                            </select>
+                            <p>Vreme projekcije:</p>
+                            <select [(ngModel)]="userInputTime">
+                                <option *ngFor="let time of movie.projectionTime" [value]="time">
+                                    {{time}} 
+                                </option>
+                            </select>
+                            <p>Količina karata:</p>
+                            <input type="number" [(ngModel)]="userInputCount" class="cards-amount">
+                        
+                            <p>
+                                <label>
+                                    Cena karte: <strong>{{movie.price}} RSD</strong>
+                                </label>
+                            </p>
+
+                            <a mat-button (click)="utils.Orders(movie, userInputDate, userInputTime, userInputCount)" class="btn">
+                                <i class="fa-solid fa-cart-shopping"></i> Rezervišite kartu
+                            </a>
+                        </div>
+                    </mat-card-content>
+                </div>
+            </div>
+            <mat-card-actions *ngIf="this.status == 'Gledano'" class="rating">
+                <label for="select-rating">Unesite ocenu:</label>
+                <div class="stars">
+                    <ng-container *ngFor="let star of [1,2,3,4,5]" >
+                        <i class="fa-star"                          
+                            [ngClass]="{
+                                'fa-solid': star <= userInputRating,
+                                'fa-regular': star > userInputRating
+                            }"
+                            style="color: rgb(252, 255, 95);"
+                            (click)="userInputRating = star">
+                        </i>
+                    </ng-container>
+                </div>
+   
+                <label for="textarea-comment">Unesite komentar</label>
+                <textarea id="textarea-comment" [(ngModel)]="userInputComment">
+
+                </textarea>
+                <br>
+                <a mat-button (click)="PostaviOcenu(movie, userInputRating, userInputComment)" class="btn">
+                    <i class="fa-solid fa-paper-plane"></i> Postavite komentar
+                </a>
+            </mat-card-actions>
+        </mat-card>
+        
+        <div class="comments">
+            <h3>Komentari</h3>
+            <mat-list>
+                <mat-list-item *ngFor="let comment of userReview" class="comment">
+                    <p>Korisnik: <strong>{{comment.user}}</strong></p>
+                    <p>Ocena:</p>
+                        <div class="stars">
+                        <ng-container *ngFor="let star of [1,2,3,4,5]" >
+                            <i class="fa-star"                          
+                            [ngClass]="{
+                                'fa-solid': star <= comment.rating,
+                                'fa-regular': star > comment.rating
+                            }"
+                            style="color: rgb(252, 255, 95);">
+                        </i>
+                        </ng-container>
+                    </div>
+                    <p>{{comment.comment}}</p>
+                </mat-list-item>
+            </mat-list>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,160 @@
+.korpa {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #000;
+  color: #fff;
+  padding: 30px 20px;
+}
+
+/* Tabela */
+.korpa .cart-holder table {
+  width: 100%;
+  background-color: #1a1a1a;
+  padding: 20px;
+  border-radius: 10px;
+  border-spacing: 0 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.1);
+}
+
+.korpa .cart-holder table th {
+  color: #ff4c4c;
+  font-size: 16px;
+  padding: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  border-bottom: 1px solid #d80000;
+}
+
+.korpa .cart-holder table td {
+  color: #fff;
+  background: transparent;
+  border-top: 1px solid #d80000;
+  border-bottom: 1px solid #d80000;
+  padding: 10px;
+  font-size: 15px;
+  text-align: center;
+}
+
+.korpa .cart-holder table td img {
+  max-height: 80px;
+  border-radius: 6px;
+}
+
+/* Količina input */
+.korpa .cart-holder .amount {
+  background-color: #141414;
+  color: #fff;
+  padding: 5px;
+  border: 1px solid #d80000;
+  border-radius: 6px;
+  width: 60px;
+  text-align: center;
+}
+
+.korpa .cart-holder .amount:focus {
+  outline: none;
+  border-color: #ff3c3c;
+}
+
+/* Dugme za uklanjanje */
+.korpa .cart-holder .remove-btn {
+  background-color: #d80000;
+  color: #fff;
+  border: 1px solid #d80000;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: 0.3s ease;
+}
+
+.korpa .cart-holder .remove-btn:hover {
+  background-color: transparent;
+  color: #d80000;
+}
+
+/* Ukupna cena */
+.korpa .summary {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 15px 0;
+  text-transform: uppercase;
+  color: #f2c200;
+  text-align: center;
+}
+
+/* Dugmad */
+.korpa .btns-holder {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.korpa .btns-holder button {
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin: 5px;
+  transition: 0.3s ease;
+}
+
+.korpa .btns-holder button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Dugme za čišćenje korpe */
+.korpa .btns-holder .clear-cart {
+  background-color: #d80000;
+  border: 1px solid #d80000;
+  color: #fff;
+}
+
+.korpa .btns-holder .clear-cart:hover {
+  background-color: transparent;
+  color: #d80000;
+}
+
+/* Prazna korpa */
+.korpa .no-order {
+  padding: 20px;
+  border: 1px solid #d80000;
+  border-radius: 8px;
+  background-color: #1a1a1a;
+  color: #fff;
+  text-align: center;
+}
+
+.korpa .no-order mat-card-content p a {
+  color: #f2c200;
+  text-decoration: underline;
+}
+
+.korpa .no-order mat-card-content p a:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .korpa .cart-holder table td {
+    font-size: 14px;
+    padding: 6px;
+  }
+
+  .korpa .cart-holder .amount {
+    width: 45px;
+  }
+
+  .korpa .btns-holder button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}

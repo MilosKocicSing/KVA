@@ -1,0 +1,112 @@
+.login {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #000;
+  color: #fff;
+  padding: 40px 20px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login .auth-card {
+  background-color: #1a1a1a;
+  border: 1px solid #d80000;
+  border-radius: 10px;
+  padding: 40px 30px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.1);
+  text-align: center;
+}
+
+.login .auth-card mat-card-header {
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.login .auth-card mat-card-header h2 {
+  font-size: 24px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.login .auth-card mat-card-content mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.login .auth-card mat-form-field .mat-form-field-infix {
+  background-color: #2a2a2a;
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: #fff;
+}
+
+.login .auth-card mat-label,
+.login .auth-card .mat-form-field-label {
+  color: #bbb;
+}
+
+.login .auth-card .mat-form-field-underline {
+  background-color: #d80000;
+}
+
+.login .auth-card .mat-input-element {
+  color: #fff;
+}
+
+.login .auth-card mat-card-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.login .auth-card .btns-holder {
+  width: 100%;
+  max-width: 200px;
+}
+
+.login .auth-card .btns-holder button {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 6px;
+  background-color: #d80000;
+  border: 1px solid #d80000;
+  color: #fff;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-bottom: 15px;
+  transition: 0.3s ease;
+}
+
+.login .auth-card .btns-holder button:hover {
+  background-color: transparent;
+  color: #d80000;
+}
+
+.login .auth-card .btns-holder a {
+  color: #f2c200;
+  font-size: 14px;
+  text-decoration: underline;
+  transition: 0.2s;
+}
+
+.login .auth-card .btns-holder a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .login {
+    padding: 20px;
+  }
+
+  .login .auth-card {
+    padding: 30px 20px;
+  }
+}

@@ -1,0 +1,31 @@
+<div class="login">
+    <div class="container">
+        <mat-card class="auth-card">
+            <mat-card-header>
+                <h1>Uloguj se na nalog</h1>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="inputs-holder">
+                    <mat-form-field class="full-width">
+                    <mat-label>Korisničko ime</mat-label>
+                    <input type="text" matInput placeholder="Unesite vaše korisničko ime..." [(ngModel)]="username">
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <mat-label>Šifra</mat-label>
+                        <input id="password" type="password" matInput placeholder="Unesite vašu šifru..." [(ngModel)]="password">
+                    </mat-form-field>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <div class="btns-holder">
+                    <button type="button" mat-button (click)="doLogin()">
+                    <i class="fa-solid fa-right-to-bracket"></i> Uloguj se
+                    </button>
+                    <a mat-button routerLink="/register">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Napravi novi nalog
+                    </a>
+                </div>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

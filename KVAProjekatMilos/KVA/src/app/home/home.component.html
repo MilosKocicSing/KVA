@@ -1,0 +1,61 @@
+<div class="home">
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" [(ngModel)]="userInputName" id="search_form_name" placeholder="Unesite detalje filma"/>
+            <button (click)="Search(userInputName)">Pretražite   <i class="fa-solid fa-magnifying-glass" style="color: rgb(255, 255, 255);"> </i></button>
+        </div>
+
+        <div class="details-box">
+                <label>Žanr: </label>
+                <select [(ngModel)]="userInputGenre">
+                    <option value="" selected>
+                        -
+                    </option>
+                    <option *ngFor="let genre of genres" [value]="genre.genreId">
+                        {{genre.name}}
+                    </option>
+                </select>
+                <label>Glumac: </label>
+                <select [(ngModel)]="userInputActor">
+                    <option value="" selected>
+                        -
+                    </option>
+                    <option *ngFor="let actor of actors" [value]="actor.actorId">
+                        {{actor.name}}
+                    </option>
+                </select>
+                <label>Reditelj: </label>
+                <select [(ngModel)]="userInputDirector">
+                    <option value="" selected>
+                        -
+                    </option>
+                    <option *ngFor="let director of directors" [value]="director.directorId">
+                        {{director.name}}
+                    </option>
+                </select>
+            <br>
+            <button (click)="Filter()" class="confirm-params-btn">Potvrdite parametre</button>
+        </div>
+
+        <div *ngIf="movies" class="container movies-container">
+            <mat-card class="movies-card" appearance="outlined" *ngFor="let movie of movies">
+                <div class="movie-box">
+                    <a [routerLink]="['/film/',movie.movieId]"><img mat-card-image [src]="utils.generateMovieImage(movie.poster)" [alt]="movie.poster"></a>
+                    <mat-card-content>
+                        <h2>{{movie.title}}</h2>
+                        <p>Trajanje filma: {{utils.round(movie.runTime/60)}}h {{utils.leftover(movie.runTime)}}min</p>
+                        <p>Datum izlaska: {{utils.formatDate(movie.startDate)}}</p>
+                        <p *ngIf="ProsecnaOcena(movie.movieId) != 0">Ocena gledalaca: <i class="fa-solid fa-star" style="color: rgb(252, 255, 95);"> </i>{{utils.round2(ProsecnaOcena(movie.movieId))}}</p>
+                        <p *ngIf="ProsecnaOcena(movie.movieId) == 0">Ocena gledalaca: Nema ocena</p>
+                        <p><strong>Cena karte: {{movie.price}} RSD</strong></p>
+                    </mat-card-content>
+                </div>
+                <mat-card-actions>
+                    <a mat-button [routerLink]="['/film/', movie.movieId]" class="more-details">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Više detalja
+                    </a>
+                </mat-card-actions>
+            </mat-card> 
+        </div>
+    </div>
+</div>

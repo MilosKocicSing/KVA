@@ -1,0 +1,45 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+<div class="app">
+  <div class="container">
+    <mat-toolbar color="primary" class="navbar">
+      <div class="logo">
+        <span>
+          <i class="fa-solid fa-film"> CineZona</i>
+        </span>
+      </div>
+
+      <div class="nav">
+        <a routerLink="/" mat-button>
+          <i class="fa-solid fa-house"></i>
+          <span class="link-name"> Početna</span>
+        </a>
+
+        <a routerLink="/login" mat-button *ngIf="!service.getActiveUser()">
+          <i class="fa-solid fa-right-to-bracket"></i>
+          <span class="link-name"> Uloguj se</span>
+        </a>
+        <a routerLink="/register" mat-button *ngIf="!service.getActiveUser()">
+          <i class="fa-solid fa-right-to-bracket"></i>
+          <span class="link-name"> Registruj se</span>
+        </a>
+        <a routerLink="/korisnik" mat-button *ngIf="service.getActiveUser()">
+          <i class="fa-solid fa-user"></i>
+          <span class="link-name"> Korisnik</span>
+        </a>
+        <a routerLink="/korpa" mat-button *ngIf="service.getActiveUser()">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="link-name"> Vaša korpa</span>
+        </a>
+        <button mat-button *ngIf="service.getActiveUser()" (click)="doLogout()">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span class="link-name"> Izloguj se</span>
+        </button>
+      </div>
+    </mat-toolbar>
+  </div>
+</div>
+
+<router-outlet />

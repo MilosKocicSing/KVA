@@ -1,0 +1,112 @@
+.register {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #000;
+  color: #fff;
+  padding: 40px 20px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register .auth-card {
+  background-color: #1a1a1a;
+  border: 1px solid #d80000;
+  border-radius: 10px;
+  padding: 40px 30px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.1);
+  text-align: center;
+}
+
+.register .auth-card mat-card-header {
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.register .auth-card mat-card-header h2 {
+  font-size: 24px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.register .auth-card mat-card-content mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.register .auth-card mat-form-field .mat-form-field-infix {
+  background-color: #2a2a2a;
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: #fff;
+}
+
+.register .auth-card mat-label,
+.register .auth-card .mat-form-field-label {
+  color: #bbb;
+}
+
+.register .auth-card .mat-form-field-underline {
+  background-color: #d80000;
+}
+
+.register .auth-card .mat-input-element {
+  color: #fff;
+}
+
+.register .auth-card mat-card-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.register .auth-card .btns-holder {
+  width: 100%;
+  max-width: 200px;
+}
+
+.register .auth-card .btns-holder button {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 6px;
+  background-color: #d80000;
+  border: 1px solid #d80000;
+  color: #fff;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-bottom: 15px;
+  transition: 0.3s ease;
+}
+
+.register .auth-card .btns-holder button:hover {
+  background-color: transparent;
+  color: #d80000;
+}
+
+.register .auth-card .btns-holder a {
+  color: #f2c200;
+  font-size: 14px;
+  text-decoration: underline;
+  transition: 0.2s;
+}
+
+.register .auth-card .btns-holder a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .register {
+    padding: 20px;
+  }
+
+  .register .auth-card {
+    padding: 30px 20px;
+  }
+}

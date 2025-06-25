@@ -1,0 +1,183 @@
+<div class="korisnik">
+    <div class="container">
+        <div class="wrapper" *ngIf="user">
+            <mat-card class="user-card" appearance="outlined">
+                <mat-card-header>
+                    <img mat-card-avatar class="example-header-image" [src]="['https://ui-avatars.com/api/?name='+user.email]">
+                    <mat-card-title>{{user.username}}</mat-card-title>
+                    <mat-card-subtitle>
+                        <p class="no-border">Omiljeni filmovi: {{user.favoriteMovies}}</p>
+                    </mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content class="user-card-content">
+                    <mat-accordion multi>
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    <i class="fa-solid fa-key"></i>&nbsp;Promena šifre
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <mat-form-field class="full-width">
+                                <mat-label>Stara šifra</mat-label>
+                                <input matInput type="password" [(ngModel)]="oldPasswordValue" />
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label>Nova šifra</mat-label>
+                                <input matInput type="password" [(ngModel)]="newPasswordValue" />
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label>Ponovite šifru</mat-label>
+                                <input matInput type="password" [(ngModel)]="repeatPasswordValue" />
+                            </mat-form-field>
+                            <button mat-button (click)="doChangePassword()" class="confirm-btn">
+                                <i class="fa-solid fa-paper-plane"></i> Potvrdi
+                            </button>
+                        </mat-expansion-panel>
+                        <mat-expansion-panel *ngIf="userCopy">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    <i class="fa-solid fa-user-tag"></i>&nbsp;Ažuriranje profila
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <mat-form-field class="full-width">
+                                <mat-label>Email</mat-label>
+                                <input matInput type="email" [(ngModel)]="userCopy.email" disabled />
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label>Korisničko ime</mat-label>
+                                <input matInput type="text" [(ngModel)]="userCopy.username" disabled />
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label>Ime</mat-label>
+                                <input matInput type="text" [(ngModel)]="userCopy.name" />
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label>Prezime</mat-label>
+                                <input matInput type="text" [(ngModel)]="userCopy.surname" />
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label>Telefon</mat-label>
+                                <input matInput type="tel" [(ngModel)]="userCopy.phoneNumber" />
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label>Adresa</mat-label>
+                                <input matInput type="text" [(ngModel)]="userCopy.address" />
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label>Odaberite omiljene filmove</mat-label>
+                                <mat-select [(ngModel)]="userCopy.favoriteMovies" multiple>
+                                    <mat-option *ngFor="let movie of movies" [value]="movie.originalTitle">
+                                        {{movie.originalTitle}}.
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <button mat-button (click)="doUpdateUser()" class="update-btn">
+                                <i class="fa-solid fa-paper-plane"></i> Ažuriraj
+                            </button>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </mat-card-content>
+            </mat-card>
+            <mat-card appearance="outlined" *ngIf="purchaseHistoryForUser.length == 0" class="no-order">
+                <mat-card-content>
+                    <h1>Nemate istoriju porudžbina</h1>
+                    <p>Da bi ste rezervisali film posetite <a [routerLink]="['/home']" class="cyan">glavnu stranicu</a></p>
+                </mat-card-content>
+            </mat-card>
+            <div *ngIf="purchaseHistoryForUser.length > 0" class="cart-holder">
+        <table mat-table [dataSource]="purchaseHistoryForUser">
+
+                <ng-container matColumnDef="poster">
+                    <th mat-header-cell *matHeaderCellDef class="id">
+                        Poster
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="id"> <img src="{{element.poster}}"> </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="title">
+                    <th mat-header-cell *matHeaderCellDef class="id">
+                        Titl
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="id"> {{element.title}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="runTime">
+                    <th mat-header-cell *matHeaderCellDef class="id">
+                        Trajanje
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="id"> {{utils.round(element.runTime/60)}}h {{utils.leftover(element.runTime)}}min </td>
+                </ng-container>
+
+                <ng-container matColumnDef="startDate">
+                    <th mat-header-cell *matHeaderCellDef class="id">
+                        Datum
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="id"> {{element.startDate}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="projectionDate">
+                    <th mat-header-cell *matHeaderCellDef class="id">
+                        Datum projekcije
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="id"> {{element.projectionDate}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="projectionTime">
+                    <th mat-header-cell *matHeaderCellDef class="id">
+                        Vreme projekcije
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="id"> {{element.projectionTime}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="price">
+                    <th mat-header-cell *matHeaderCellDef class="id">
+                        Cena
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="id"> {{element.price}} RSD </td>
+                </ng-container>
+
+                <ng-container matColumnDef="count">
+                    <th mat-header-cell *matHeaderCellDef class="id">
+                        Količina
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="id"> {{element.count}} kom. </td>
+                </ng-container>
+
+                <ng-container matColumnDef="total">
+                    <th mat-header-cell *matHeaderCellDef class="id">
+                        Ukupno
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="id"> {{element.price * element.count}} RSD </td>
+                </ng-container>
+
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef class="id">
+                        Status
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="id"> {{element.status}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="buttons">
+                    <th mat-header-cell *matHeaderCellDef class="id">
+                        Opcije
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="id">
+                        <button type="button" mat-button [routerLink]="['/film/', element.movieId]"  class="details-btn">
+                            Detalji
+                        </button>
+                        <div *ngIf="element.status == 'Rezervisano'" class="payment-btns">
+                            <button type="button" mat-button (click)="Pay(element)" class="pay-btn">
+                                Plati
+                            </button>
+                            <button type="button" mat-button (click)="Cancel(element)" class="cancel-btn">
+                                Otkaži
+                            </button>
+                        </div>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="tr-gradient"></tr>
+        </table>
+        </div>
+    </div>
+</div>
